@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="fragments/layout.html :: head">
+</head>
+<body>
+<div class="wrapper">
+    <header th:insert="fragments/layout.html :: header">
+    </header>
+    <main>
+
+        <p th:text="${message}"></p>
+
+        <section class="currencies-section">
+
+            <table class="currencies-table">
+                <tr>
+                    <td colspan="4">Currencies</td>
+                </tr>
+                <tr>
+                    <td>Currency</td>
+                    <td>Unit</td>
+                    <td>Value</td>
+                    <td>Actions</td>
+                </tr>
+
+                <tr th:each="currency: ${exchange.currenciesForCantor}">
+                    <form action="/buy" method="post">
+                    <input th:value="${currency.code}" type="hidden" name="currency">
+                    <td th:text="${currency.code}"></td>
+                    <td th:text="${currency.unit}"></td>
+                    <td th:text="${currency.sellPrice}"></td>
+                    <td><input type="text" name="amount" size="4"><button>Buy</button></td>
+                    </form>
+                </tr>
+
+                <tr>
+                    <td th:text="${'Last courses update: ' + exchange.publicationData}" colspan="4"></td>
+                </tr>
+            </table>
+
+            <table class="currencies-table">
+                <tr>
+                    <td colspan="6">My wallet</td>
+                </tr>
+                <tr>
+                    <td>Currency</td>
+                    <td>Unit</td>
+                    <td>Price</td>
+                    <td>Amount</td>
+                    <td>Value</td>
+                    <td>Actions</td>
+                </tr>
+
+                <tr th:each="currency: ${exchange.currenciesForUser}">
+                    <form action="/sell" method="post">
+                    <input th:value="${currency.code}" type="hidden" name="currency">
+                    <td th:text="${currency.code}"></td>
+                    <td th:text="${currency.unit}"></td>
+                    <td th:text="${currency.purchasePrice}"></td>
+                    <td th:text="${currency.amountUser}"></td>
+                    <td th:text="${currency.userValue}"></td>
+                    <td><input type="text" name="amount" size="4"><button>Sell</button></td>
+                    </form>
+                </tr>
+
+                <tr>
+                    <td th:text="${'Available PLN: ' + exchange.availableForUser}" colspan="6"></td>
+                </tr>
+            </table>
+
+        </section>
+
+
+    </main>
+    <footer th:insert="fragments/layout.html :: footer">
+    </footer>
+
+</div>
+</body>
+</html>

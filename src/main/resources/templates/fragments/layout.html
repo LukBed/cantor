@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title th:text="E-cantor"></title>
+    <meta name='robots' content='index,follow'>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-family: arial, sans-serif;
+            font-size: 16px;
+        }
+
+        .wrapper {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        header>* {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 10px 20px;
+        }
+
+        .main-nav {
+            text-align: center;
+        }
+
+        .main-nav a {
+            display: inline-block;
+            margin: 0px 10px;
+            color: black;
+            font-size: 17px;
+        }
+
+        .main-nav a:hover {
+            color: darkblue;
+            text-decoration: overline underline;
+        }
+
+        main a {
+            color: #030;
+            transition: 0.1s;
+            text-decoration: none;
+        }
+
+        main a:hover {
+            color: darkgreen;
+            text-decoration: overline underline;
+        }
+
+        footer {
+            text-align: center;
+            font-style: italic;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        .currencies-table {
+            border-collapse: collapse;
+        }
+
+        .currencies-table td {
+            padding: 5px;
+            border: 1px solid black;
+        }
+
+        .currencies-section>* {
+            display: inline-block;
+            vertical-align: text-top;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header th:fragment="header">
+            <h1>Exange</h1>
+            <nav class="main-nav">
+                <a href="/">Main page</a>
+                <a th:if="${loggedUser != null}" th:text="${'Hello, ' + loggedUser.username}" href="/exchange"></a>
+                <a th:if="${loggedUser != null}" href="/credit">Credit</a>
+                <a th:if="${loggedUser != null}" href="/logout">Log out</a>
+                <a th:if="${loggedUser == null}" href="/register">Sign up</a>
+                <a th:if="${loggedUser == null}" href="/login">Sing in</a>
+            </nav>
+        </header>
+        <main>
+        </main>
+        <footer th:framgent="footer">
+            <p>E-cantor @2020</p>
+        </footer>
+
+    </div>
+</body>
+
+</html>

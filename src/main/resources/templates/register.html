@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="fragments/layout.html :: head">
+</head>
+<body >
+<div class="wrapper">
+    <header th:insert="fragments/layout.html :: header">
+    </header>
+    <main>
+        <h1>Register</h1>
+
+        <p th:each="regerror: ${registerErrors}" th:text="${regerror}"></p>
+
+        <form action="#" method="post" th:action="@{/register}" th:object="${user}">
+            <table>
+                <tr>
+                    <td>Username: </td>
+                    <td><input th:field="*{username}" placeholder="Username" /></td>
+                </tr>
+                <tr>
+                    <td>E-mail: </td>
+                    <td><input th:field="*{mail}" type="email" placeholder="Email" /></td>
+                <tr>
+                    <td>Password: </td>
+                    <td><input th:field="*{password}" type="password" placeholder="Password" /></td>
+                </tr>
+            </table>
+
+            <input type="submit" value="Sign up" />
+        </form>
+
+    </main>
+    <footer th:insert="fragments/layout.html :: footer">
+    </footer>
+
+</div>
+</body>
+</html>
